@@ -1,5 +1,7 @@
 # Face Recognition
 
+_You can also read a translated version of this file [in Chinese 简体中文版](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md)._
+
 Recognize and manipulate faces from Python or from the command line with
 the world's simplest face recognition library.
 
@@ -41,7 +43,7 @@ image = face_recognition.load_image_file("your_file.jpg")
 face_landmarks_list = face_recognition.face_landmarks(image)
 ```
 
-Finding facial features is super useful for lots of important stuff. But you can also use for really stupid stuff
+Finding facial features is super useful for lots of important stuff. But you can also use it for really stupid stuff
 like applying [digital make-up](https://github.com/ageitgey/face_recognition/blob/master/examples/digital_makeup.py) (think 'Meitu'):
 
 ![](https://cloud.githubusercontent.com/assets/896692/23625283/80638760-025d-11e7-80a2-1d2779f7ccab.png)
@@ -111,7 +113,7 @@ While Windows isn't officially supported, helpful users have posted instructions
 
 ### Command-Line Interface
 
-When you install `face_recognition`, you get a two simple command-line 
+When you install `face_recognition`, you get two simple command-line 
 programs:
 
 * `face_recognition` - Recognize faces in a photograph or folder full for 
@@ -210,7 +212,7 @@ unknown_person
 ##### Speeding up Face Recognition
 
 Face recognition can be done in parallel if you have a computer with
-multiple CPU cores. For example if your system has 4 CPU cores, you can
+multiple CPU cores. For example, if your system has 4 CPU cores, you can
 process about 4 times as many images in the same amount of time by using
 all your CPU cores in parallel.
 
@@ -245,7 +247,7 @@ See [this example](https://github.com/ageitgey/face_recognition/blob/master/exam
 
 You can also opt-in to a somewhat more accurate deep-learning-based face detection model.
 
-Note: GPU acceleration (via nvidia's CUDA library) is required for good
+Note: GPU acceleration (via NVidia's CUDA library) is required for good
 performance with this model. You'll also want to enable CUDA support
 when compliling `dlib`.
 
@@ -334,6 +336,17 @@ All the examples are available [here](https://github.com/ageitgey/face_recogniti
 * [Run a web service to recognize faces via HTTP (Requires Flask to be installed)](https://github.com/ageitgey/face_recognition/blob/master/examples/web_service_example.py)
 * [Recognize faces with a K-nearest neighbors classifier](https://github.com/ageitgey/face_recognition/blob/master/examples/face_recognition_knn.py)
 
+## Articles and Guides that cover `face_recognition`
+
+- My article on how Face Recognition works: [Modern Face Recognition with Deep Learning](https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78)
+  - Covers the algorithms and how they generally work
+- [Face recognition with OpenCV, Python, and deep learning](https://www.pyimagesearch.com/2018/06/18/face-recognition-with-opencv-python-and-deep-learning/) by Adrian Rosebrock
+  - Covers how to use face recognition in practice
+- [Raspberry Pi Face Recognition](https://www.pyimagesearch.com/2018/06/25/raspberry-pi-face-recognition/) by Adrian Rosebrock
+  - Covers how to use this on a Raspberry Pi
+- [Face clustering with Python](https://www.pyimagesearch.com/2018/07/09/face-clustering-with-python/) by Adrian Rosebrock
+  - Covers how to automatically cluster photos based on who appears in each photo using unsupervised learning
+
 ## How Face Recognition Works
 
 If you want to learn how face location and recognition work instead of
@@ -343,6 +356,7 @@ depending on a black box library, [read my article](https://medium.com/@ageitgey
 
 * The face recognition model is trained on adults and does not work very well on children. It tends to mix
   up children quite easy using the default comparison threshold of 0.6.
+* Accuracy may vary between ethnic groups. Please see [this wiki page](https://github.com/ageitgey/face_recognition/wiki/Face-Recognition-Accuracy-Problems#question-face-recognition-works-well-with-european-individuals-but-overall-accuracy-is-lower-with-asian-individuals) for more details.
 
 ## Deployment to Cloud Hosts (Heroku, AWS, etc)
 
@@ -353,33 +367,9 @@ To make things easier, there's an example Dockerfile in this repo that shows how
 `face_recognition` in a [Docker](https://www.docker.com/) container. With that, you should be able to deploy
 to any service that supports Docker images.
 
-## Common Issues
+## Having problems?
 
-Issue: `Illegal instruction (core dumped)` when using face_recognition or running examples.
-
-Solution: `dlib` is compiled with SSE4 or AVX support, but your CPU is too old and doesn't support that.
-You'll need to recompile `dlib` after [making the code change outlined here](https://github.com/ageitgey/face_recognition/issues/11#issuecomment-287398611).
-
-Issue: `RuntimeError: Unsupported image type, must be 8bit gray or RGB image.` when running the webcam examples.
-
-Solution: Your webcam probably isn't set up correctly with OpenCV. [Look here for more](https://github.com/ageitgey/face_recognition/issues/21#issuecomment-287779524).
-
-Issue: `MemoryError` when running `pip2 install face_recognition`
-
-Solution: The face_recognition_models file is too big for your available pip cache memory. Instead,
-try `pip2 --no-cache-dir install face_recognition` to avoid the issue.
-
-Issue: `AttributeError: 'module' object has no attribute 'face_recognition_model_v1'`
-
-Solution: The version of `dlib` you have installed is too old. You need version 19.7 or newer. Upgrade `dlib`.
-
-Issue: `Attribute Error: 'Module' object has no attribute 'cnn_face_detection_model_v1'`
-
-Solution: The version of `dlib` you have installed is too old. You need version 19.7 or newer. Upgrade `dlib`.
-
-Issue: `TypeError: imread() got an unexpected keyword argument 'mode'`
-
-Solution: The version of `scipy` you have installed is too old. You need version 0.17 or newer. Upgrade `scipy`.
+If you run into problems, please read the [Common Errors](https://github.com/ageitgey/face_recognition/wiki/Common-Errors) section of the wiki before filing a github issue.
 
 ## Thanks
 
